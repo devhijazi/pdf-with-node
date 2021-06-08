@@ -4,7 +4,6 @@ const ejs = require('ejs');
 const path = require('path');
 
 const puppeteer = require('puppeteer');
-const express = require('express');
 
 const app = express();
 
@@ -35,6 +34,7 @@ app.get('/download-pdf', async (req, res) => {
   const browser = await puppeteer.launch({ headless: true }); // definindo como headless
   const page = await browser.newPage();
 
+
   await page.goto('http://localhost:3000/', {
     waitUntil: 'networkidle0',
   });
@@ -56,7 +56,7 @@ app.get('/download-pdf', async (req, res) => {
 
 app.get('/', (req, res) => {
   ejs.renderFile(
-    path.join(__dirname, 'print.ejs'),
+    path.join(__dirname, '/boleto.ejs'),
     {
       hitechlinePartners,
     },
